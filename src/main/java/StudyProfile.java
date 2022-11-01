@@ -1,7 +1,10 @@
 public enum StudyProfile {
     PROGRAMMING,
     ENGINEERING,
-    MEDICINE;
+    MEDICINE,
+    PHYSICS,
+    LINGUISTICS,
+    MATHEMATICS;
 
     String profileName;
 }
