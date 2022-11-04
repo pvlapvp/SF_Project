@@ -1,3 +1,7 @@
+package util;
+
+import comparator.*;
+
 public abstract class ComparatorUtil {
     public static StudentComparator getStudentComparator(StudentComparatorVariant variant) {
         switch (variant) {

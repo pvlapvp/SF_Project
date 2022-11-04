@@ -1,13 +1,22 @@
+package model;
+
+import com.google.gson.annotations.SerializedName;
+
 public class University {
+    @SerializedName("ИД Университета")
     String id;
+    @SerializedName("Полное название")
     String fullName;
+    @SerializedName("Сокращенное название")
     String shortName;
+    @SerializedName("Дата основания")
     int yearOfFoundation;
+    @SerializedName("Основная специализация")
     StudyProfile mainProfile;
 
     @Override
     public String toString() {
-        return "University{" +
+        return "model.University{" +
                 "id='" + id + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +

@@ -1,3 +1,5 @@
+package comparator;
+
 public enum UniversityComparatorVariant {
     byId,
     byFullName,

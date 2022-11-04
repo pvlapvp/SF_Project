@@ -1,3 +1,5 @@
+package model;
+
 public enum StudyProfile {
     PROGRAMMING,
     ENGINEERING,
@@ -6,5 +8,5 @@ public enum StudyProfile {
     LINGUISTICS,
     MATHEMATICS;
 
-    String profileName;
+    public String profileName;
 }
