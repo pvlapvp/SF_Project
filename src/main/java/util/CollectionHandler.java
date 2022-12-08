@@ -2,12 +2,13 @@ package util;
 
 import model.Statistics;
 import model.Student;
+import model.University;
 
 import java.util.List;
 
 //утилитный класс для обработки коллекций студентов и университетов
 public class CollectionHandler {
-    public List<Statistics> getStatisticList(List<Student> studentList) {
+    public List<Statistics> getStatisticList(List<Student> studentList, List<University> universityList) {
         return null;
     }
     //TODO: реализовать метод, получающий на вход коллекции студентов и университетов, возвращающий коллекцию элементов класса Statistics
