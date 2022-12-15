@@ -52,4 +52,14 @@ public class Statistics {
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
     }
+
+    @Override
+    public String toString() {
+        return "Statistics{" +
+                "studyProfile='" + studyProfile + '\'' +
+                ", avgExamScore=" + avgExamScore +
+                ", profileStudentsAmount=" + profileStudentsAmount +
+                ", universityName='" + universityName + '\'' +
+                '}';
+    }
 }

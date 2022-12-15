@@ -3,11 +3,10 @@ import comparator.StudentComparator;
 import comparator.StudentComparatorVariant;
 import comparator.UniversityComparator;
 import comparator.UniversityComparatorVariant;
-import util.ComparatorUtil;
-import util.ExcelReader;
+import model.Statistics;
+import util.*;
 import model.Student;
 import model.University;
-import util.JsonUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -73,5 +72,10 @@ public class Main {
             University deserializedUniversity = JsonUtil.getUniversityClassFromJson(serializedUniversity);
             System.out.println("<<<Deserialized university:\n" + deserializedUniversity);
         });
+
+        List<Student> students = ExcelReader.readStudents();
+        List<University> universities = ExcelReader.readUniversities();
+        List<Statistics> statisticsList = CollectionHandler.getStatisticList(students, universities);
+        XlsWriter.generateXlsTable(statisticsList, "src/main/resources/out.xlsx");
     }
 }

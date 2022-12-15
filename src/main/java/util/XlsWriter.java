@@ -1,5 +1,6 @@
-package model;
+package util;
 
+import model.Statistics;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -60,18 +61,5 @@ public class XlsWriter {
         workbook.write(new FileOutputStream(fileName));
         workbook.close();
         rowIndex = 0;
-    }
-
-    public static void main(String[] args) throws IOException {
-        List<Statistics> statisticsList = new ArrayList<>();
-        statisticsList.add(new Statistics("a", 4, 40, "aa"));
-        statisticsList.add(new Statistics("b", 3, 50, "bb"));
-        statisticsList.add(new Statistics("c", 2, 67, "cc"));
-        statisticsList.add(new Statistics("d", 5, 45, "dd"));
-        statisticsList.add(new Statistics("e", 4, 67, "ee"));
-        statisticsList.add(new Statistics("f", 3, 34, "ff"));
-        statisticsList.add(new Statistics("g", 2, 55, "gg"));
-
-        generateXlsTable(statisticsList, "e:/1.xlsx");
     }
 }
