@@ -2,16 +2,26 @@ package model;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+@XmlAccessorType(XmlAccessType.FIELD)
 public class University {
     @SerializedName("ИД Университета")
+    @XmlElement(name = "universityId")
     String id;
     @SerializedName("Полное название")
+    @XmlElement(name = "universityName")
     String fullName;
     @SerializedName("Сокращенное название")
+    @XmlTransient
     String shortName;
     @SerializedName("Дата основания")
+    @XmlTransient
     int yearOfFoundation;
     @SerializedName("Основная специализация")
+    @XmlElement(name = "universityProfile")
     StudyProfile mainProfile;
 
     @Override

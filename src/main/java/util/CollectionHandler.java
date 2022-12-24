@@ -25,37 +25,36 @@ public class CollectionHandler {
         //по каждому профилю проходимся и вначале отбираем университеты с текущим профилем
         for (StudyProfile studyProfile: StudyProfile.values()){
             //если университеты с таким профилем есть, отсеиваем университеты без студентов, точнее, выбираем только университеты со студентами
-            if (universityList.stream().anyMatch(university -> university.getMainProfile().equals(studyProfile))){
-                universityList
-                        .stream()
-                        .filter(university -> university.getMainProfile().equals(studyProfile))
-                        .forEach(university -> {
-                            if (studentList.stream().anyMatch(student -> student.getUniversityId().equals(university.getId()))) {
-                                //здесь мы уже знаем, что в этом универсистеты студенты есть, формируем статистику
-                                Statistics statistics = new Statistics("", 0, 0, "");
-                                statistics.setStudyProfile(studyProfile.name());
-                                statistics.setProfileStudentsAmount(studentList
-                                        .stream()
-                                        .filter(student -> student.getUniversityId().equals(university.getId()))
-                                        .count()
-                                );
-                                statistics.setUniversityName(university.getFullName());
+            if (universityList.stream().noneMatch(university -> university.getMainProfile().equals(studyProfile))) continue;
+            universityList
+                    .stream()
+                    .filter(university -> university.getMainProfile().equals(studyProfile))
+                    .forEach(university -> {
+                        if (studentList.stream().noneMatch(student -> student.getUniversityId().equals(university.getId()))) {
+                            //здесь мы уже знаем, что в этом универсистеты студенты есть, формируем статистику
+                            Statistics statistics = new Statistics("", 0, 0, "");
+                            statistics.setStudyProfile(studyProfile.name());
+                            statistics.setProfileStudentsAmount(studentList
+                                    .stream()
+                                    .filter(student -> student.getUniversityId().equals(university.getId()))
+                                    .count()
+                            );
+                            statistics.setUniversityName(university.getFullName());
 
-                                //используем удобный класс для подсчета всяких статистических штучек, вроде среднего, максимального и т.д.
-                                DoubleSummaryStatistics summaryStatistics = new DoubleSummaryStatistics();
-                                studentList.stream()
-                                        .filter(student -> student.getUniversityId().equals(university.getId()))
-                                        .forEach(student -> {
-                                            summaryStatistics.accept(student.getAvgExamScore());
-                                        });
+                            //используем удобный класс для подсчета всяких статистических штучек, вроде среднего, максимального и т.д.
+                            DoubleSummaryStatistics summaryStatistics = new DoubleSummaryStatistics();
+                            studentList.stream()
+                                    .filter(student -> student.getUniversityId().equals(university.getId()))
+                                    .forEach(student -> {
+                                        summaryStatistics.accept(student.getAvgExamScore());
+                                    });
 
-                                BigDecimal bigAvgExamScore = BigDecimal.valueOf(summaryStatistics.getAverage());
-                                bigAvgExamScore = bigAvgExamScore.setScale(2, RoundingMode.FLOOR);
-                                statistics.setAvgExamScore(bigAvgExamScore.doubleValue());
-                                statisticsList.add(statistics);
-                            }
-                        });
-            }
+                            BigDecimal bigAvgExamScore = BigDecimal.valueOf(summaryStatistics.getAverage());
+                            bigAvgExamScore = bigAvgExamScore.setScale(2, RoundingMode.FLOOR);
+                            statistics.setAvgExamScore(bigAvgExamScore.doubleValue());
+                            statisticsList.add(statistics);
+                        }
+                    });
         }
 
         return statisticsList;

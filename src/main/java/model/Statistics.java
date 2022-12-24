@@ -1,5 +1,10 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /*
 класс Statistics (с конструктором, геттерами и сеттерами), в котором должны быть следующие поля:
 профиль обучения,
@@ -8,10 +13,17 @@ package model;
 количество университетов по профилю,
 названия университетов.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Statistics {
+    @XmlElement(name = "universityProfile")
     private String studyProfile;
+    @XmlElement(name = "avgScore")
     private double avgExamScore;
+    @XmlTransient
     private double profileStudentsAmount;
+    @XmlTransient
+    private int numberOfUniversities;
+    @XmlTransient
     private String universityName;
 
     public Statistics(String studyProfile, double avgExamScore, double profileStudentsAmount, String universityName) {
